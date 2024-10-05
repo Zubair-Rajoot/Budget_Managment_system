@@ -8,6 +8,21 @@ import Spinner from '../components/Layout/Spinner'
 const HomePage = () => {
   const[showModal, setShowModal] = useState(false)
   const[loading, setLoading] = useState(false)
+  const[allTransection, setAllTransection] = useState([])
+
+
+  //get all transections
+  // const getAllTransection = async()=>{
+  //   try {
+  //     const user = JSON.parse(localStorage.getItem('user'))
+  //     setLoading(true)
+  //     const res = await axios.post('/transection/get-transection', {userid: user._id})
+  //     setLoading(false)
+      
+  //   } catch (error) {
+      
+  //   }
+  // }
 
   const handleSubmit = async(values) =>{
     try {
