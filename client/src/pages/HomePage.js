@@ -1,5 +1,5 @@
-import React, {useState} from 'react'
-import {Form, Input, message, Modal, Select} from 'antd'
+import React, {useEffect, useState} from 'react'
+import {Form, Input, message, Modal, Select, Table} from 'antd'
 import Layout from '../components/Layout/Layout'
 import FormItem from 'antd/es/form/FormItem'
 import axios from 'axios'
@@ -11,18 +11,58 @@ const HomePage = () => {
   const[allTransection, setAllTransection] = useState([])
 
 
-  //get all transections
-  // const getAllTransection = async()=>{
-  //   try {
-  //     const user = JSON.parse(localStorage.getItem('user'))
-  //     setLoading(true)
-  //     const res = await axios.post('/transection/get-transection', {userid: user._id})
-  //     setLoading(false)
-      
-  //   } catch (error) {
-      
-  //   }
-  // }
+  //TABLE DATA 
+  const columns = [
+    {
+      title: 'Date',
+      dataIndex : 'date'
+    },
+    {
+      title: 'Amount',
+      dataIndex : 'amount'
+    },
+    {
+      title: 'Type',
+      dataIndex : 'type'
+    },
+    {
+      title: 'Category',
+      dataIndex : 'category'
+    },
+    {
+      title: 'Refrence',
+      dataIndex : 'refrence'
+    },
+    {
+      title: 'Description',
+      dataIndex : 'description'
+    },
+    {
+      title: 'Actions',
+    },
+  ]
+
+
+  //GET ALL TRANSECTIONS 
+  const getAllTransection = async()=>{
+    try {
+      const user = JSON.parse(localStorage.getItem('user'))
+      setLoading(true)
+      const res = await axios.post('/transections/get-transection', {userid: user._id})
+      setLoading(false)
+      setAllTransection(res.data)
+      console.log(res.data)
+    } catch (error) {
+      console.log(error)
+      message.error('fetch issue with transection')
+    }
+  }
+
+
+  //useEffect hook 
+  useEffect(()=>{
+    getAllTransection()
+  }, [])
 
   const handleSubmit = async(values) =>{
     try {
@@ -50,6 +90,7 @@ const HomePage = () => {
       </div>
 
       <div className='content'>
+      <Table columns={columns} dataSource={allTransection}/>
         <Modal title="Add Transection" 
         open={showModal}
         onCancel={()=>setShowModal(false)}
