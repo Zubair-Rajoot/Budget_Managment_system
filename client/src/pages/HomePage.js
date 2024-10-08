@@ -82,7 +82,7 @@ const HomePage = () => {
       setShowModal(false);
     } catch (error) {
       setLoading(false);
-      message.error("failed to add transection")
+      message.error("failed to add transection")//is transaction
       
     }
   }
