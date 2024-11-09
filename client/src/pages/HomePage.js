@@ -56,15 +56,19 @@ const HomePage = () => {
       render: (text, record) => (
         <div>
           <EditOutlined
+            style={{ color: "#34495e" }} // Set color to green
             onClick={() => {
               setEditable(record);
               setShowModal(true);
             }}
           />
-          <DeleteOutlined className="mx-2" onClick={() =>{handleDelete(record)}} />
+          <DeleteOutlined
+            style={{ color: "red", marginLeft: "8px" }} // Set color to red and add some margin
+            onClick={() => handleDelete(record)}
+          />
         </div>
       ),
-    },
+    }    
   ];
 
   //GET ALL TRANSECTIONS
@@ -264,7 +268,7 @@ const HomePage = () => {
         </Modal>
       </div>
     </Layout>
-  );
+  ); 
 };
 
 export default HomePage;

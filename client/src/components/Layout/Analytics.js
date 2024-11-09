@@ -1,6 +1,7 @@
 import React from "react";
 import { Progress } from "antd";
 
+
 const Analytics = ({ allTransection }) => {
   const categories = [
     "salary",
@@ -14,7 +15,6 @@ const Analytics = ({ allTransection }) => {
     "tax",
   ];
 
-  // Total Turnover
   const totalTurnover = allTransection.reduce(
     (acc, transaction) => acc + transaction.amount,
     0
@@ -31,7 +31,6 @@ const Analytics = ({ allTransection }) => {
   const totalExpenseTurnoverPercent =
     (totalExpenseTurnover / totalTurnover) * 100;
 
-  // Total Transactions
   const totalTransaction = allTransection.length;
   const totalIncomeTransactions = allTransection.filter(
     (transaction) => transaction.type === "income"
@@ -46,114 +45,111 @@ const Analytics = ({ allTransection }) => {
 
   return (
     <>
-      <div className="row mt-3">
-        <div className="col-md-4">
-          <div className="card">
-            <div className="card-header">
-              Total Transaction : {totalTransaction}
-            </div>
-            <div className="card-body">
-              <h5 className="text-success">
-                Income: {totalIncomeTransactions.length}
-              </h5>
-              <h5 className="text-danger">
-                Expense: {totalExpenseTransactions.length}
-              </h5>
-              <div>
-                <Progress
-                  type="circle"
-                  strokeColor="green"
-                  className="mx-2"
-                  percent={totalIncomePercent.toFixed(0)}
-                />
-                <Progress
-                  type="circle"
-                  strokeColor="red"
-                  className="mx-2"
-                  percent={totalExpensePercent.toFixed(0)}
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="col-md-4">
-          <div className="card">
-            <div className="card-header">Total TurnOver : {totalTurnover}</div>
-            <div className="card-body">
-              <h5 className="text-success">Income: {totalincomeTurnover}</h5>
-              <h5 className="text-danger">Expense: {totalExpenseTurnover}</h5>
-              <div>
-                <Progress
-                  type="circle"
-                  strokeColor="green"
-                  className="mx-2"
-                  percent={totalIncomeTurnoverPercent.toFixed(0)}
-                />
-                <Progress
-                  type="circle"
-                  strokeColor="red"
-                  className="mx-2"
-                  percent={totalExpenseTurnoverPercent.toFixed(0)}
-                />
-              </div>
-            </div>
+    <div className="analytics-container">
+  <div className="row">
+    <div className="col-md-4">
+      <div className="card analytics-card fade-left ">
+        <div className="card-header">Total Transactions: {totalTransaction}</div>
+        <div className="card-body">
+          <h5 className="text-success">
+            Income: {totalIncomeTransactions.length}
+          </h5>
+          <h5 className="text-danger">
+            Expense: {totalExpenseTransactions.length}
+          </h5>
+          <div className="progress-wrapper">
+            <Progress
+              type="circle"
+              strokeColor="green"
+              className="mx-2"
+              percent={totalIncomePercent.toFixed(0)}
+            />
+            <Progress
+              type="circle"
+              strokeColor="red"
+              className="mx-2"
+              percent={totalExpensePercent.toFixed(0)}
+            />
           </div>
         </div>
       </div>
-      <div className="row mt-3">
-        <div className="col-md-4">
-          <h4>Categorywise Income</h4>
-          {categories.map((category) => {
-            const amount = allTransection
-              .filter(
-                (transaction) =>
-                  transaction.type === "income" &&
-                  transaction.category === category
-              )
-              .reduce((acc, transaction) => acc + transaction.amount, 0);
-            return (
-              amount > 0 && (
-                <div className="card">
-                  <div className="card-body">
-                    <h5>{category}</h5>
-                    <Progress
-                      percent={((amount / totalincomeTurnover) * 100).toFixed(0)}
-                    />
-                  </div>
-                </div>
-              )
-            );
-          })}
-        </div>
-        
-        <div className="col-md-4">
-          <h4>Categorywise Expense</h4>
-          {categories.map((category) => {
-            const amount = allTransection
-              .filter(
-                (transaction) =>
-                  transaction.type === "expense" &&
-                  transaction.category === category
-              )
-              .reduce((acc, transaction) => acc + transaction.amount, 0);
-            return (
-              amount > 0 && (
-                <div className="card">
-                  <div className="card-body">
-                    <h5>{category}</h5>
-                    <Progress
-                      percent={((amount / totalExpenseTurnover) * 100).toFixed(0)}
-                    />
-                  </div>
-                </div>
-              )
-            );
-          })}
+    </div>
+    <div className="col-md-4">
+      <div className="card analytics-card bounce fade-down">
+        <div className="card-header">Total Turnover: {totalTurnover}</div>
+        <div className="card-body">
+          <h5 className="text-success">Income: {totalincomeTurnover}</h5>
+          <h5 className="text-danger">Expense: {totalExpenseTurnover}</h5>
+          <div className="progress-wrapper">
+            <Progress
+              type="circle"
+              strokeColor="green"
+              className="mx-2"
+              percent={totalIncomeTurnoverPercent.toFixed(0)}
+            />
+            <Progress
+              type="circle"
+              strokeColor="red"
+              className="mx-2"
+              percent={totalExpenseTurnoverPercent.toFixed(0)}
+            />
+          </div>
         </div>
       </div>
+    </div>
+    <div className="col-md-4">
+      <h4 className="section-header fade-right">Category-wise Expense</h4>
+      {categories.map((category) => {
+        const amount = allTransection
+          .filter(
+            (transaction) =>
+              transaction.type === "expense" && transaction.category === category
+          )
+          .reduce((acc, transaction) => acc + transaction.amount, 0);
+        return (
+          amount > 0 && (
+            <div className="card category-card fade-right">
+              <div className="card-body">
+                <h5>{category}</h5>
+                <Progress
+                  percent={((amount / totalExpenseTurnover) * 100).toFixed(0)}
+                />
+              </div>
+            </div>
+          )
+        );
+      })}
+    </div>
+  </div>
+  <div className="row mt-3">
+    <div className="col-md-4">
+      <h4 className="section-header fade-left">Category-wise Income</h4>
+      {categories.map((category) => {
+        const amount = allTransection
+          .filter(
+            (transaction) =>
+              transaction.type === "income" && transaction.category === category
+          )
+          .reduce((acc, transaction) => acc + transaction.amount, 0);
+        return (
+          amount > 0 && (
+            <div className="card category-card fade-left">
+              <div className="card-body">
+                <h5>{category}</h5>
+                <Progress
+                  percent={((amount / totalincomeTurnover) * 100).toFixed(0)}
+                />
+              </div>
+            </div>
+          )
+        );
+      })}
+    </div>
+  </div>
+</div>
+
     </>
   );
 };
 
 export default Analytics;
-//expense track

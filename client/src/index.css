@@ -16,10 +16,44 @@
 
 .filters{
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  padding: 15px 20px;
-  box-shadow: 0 0 3px gray;
+  align-items: center;
+  background-color: #f0f2f5;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.filters h6 {
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.filters .ant-select,
+.filters .ant-picker {
+  width: 200px;
+}
+
+.switch-icons .mx-2 {
+  font-size: 24px;
+  cursor: pointer;
+  margin: 0 10px;
+  transition: color 0.3s ease;
+}
+
+.btn-primary {
+  background-color: #34495e;
+  color: #ffffff;
+  border: none;
+  padding: 8px 16px;
+  font-size: 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: #007acc;
 }
 
 .anticon svg{
@@ -28,15 +62,476 @@
 }
 
 .active-icon{
-  color: black;
+  color:  #34495e;
 }
 
 .inactive-icon{
-  color: gray;
+  color: #b0b0b0;
 }
 
 .switch-icons{
-  border: 1px solid rgba(0, 0, 0, 0.677);
+  display: flex;
+  align-items: center;
+}
+
+.analytics-container {
+  padding: 20px;
+  background-color: #f4f6f9;
+  border-radius: 8px;
+}
+
+.analytics-card {
+  margin-bottom: 20px;
+  border: 1px solid #d1d9e6;
+  border-radius: 10px;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+  background-color: #34495e;
+  color: #fff;
+  font-weight: bold;
+  text-align: center;
+  padding: 10px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.card-body h5 {
+  margin: 10px 0;
+}
+
+.text-success {
+  color: #28a745;
+}
+
+.text-danger {
+  color: #dc3545;
+}
+
+.progress-wrapper {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 10px;
+}
+
+.section-header {
+  background-color: #34495e;
+  color: #fff;
+  font-weight: normal;
+  text-align: center;
+  padding: 10px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.category-card {
+  margin-bottom: 15px;
+  border-radius: 8px;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out;
+}
+
+.category-card:hover {
+  transform: translateY(-5px);
+}
+
+.category-card .card-body {
+  padding: 15px;
+}
+
+.category-card h5 {
+  font-size: 1.1rem;
+  color: #34495e;
+  margin-bottom: 10px;
+}
+
+
+
+/* Styling for the table */
+.content .ant-table {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.content .ant-table-thead > tr > th {
+  background-color: #34495e;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.content .ant-table-tbody > tr > td {
+  color: #4a4a4a;
+}
+
+/* Modal styling */
+.ant-modal-title {
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.ant-modal-content {
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.ant-modal-footer {
+  border-top: none;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.justify-content-end {
+  justify-content: flex-end;
+}
+
+/* Form input styling */
+.ant-form-item-label > label {
+  font-weight: 500;
+  color: #595959;
+}
+
+.ant-input,
+.ant-select-selector {
+  border-radius: 4px;
+  padding: 8px;
+}
+
+/* Modal button styling */
+button[type="submit"] {
+  background-color: #1890ff;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  font-size: 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  background-color: #007acc;
+}
+
+/* Additional responsive adjustments */
+@media (max-width: 768px) {
+  .filters {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .switch-icons {
+    margin-top: 10px;
+  }
+
+  .content .ant-table {
+    font-size: 14px;
+  }
+}
+
+
+/* navbar css */
+
+/* Navbar styling */
+.navbar {
+  background-color: #34495e; /* Dark blue-gray background */
+  padding: 10px 20px;
+}
+
+.navbar-brand {
+  font-size: 1.5rem;
+  color: #ffffff; /* White color for brand name */
+  font-weight: bold;
+}
+
+.navbar-nav .nav-link {
+  color: #ffffff;
+  font-weight: 500;
+  margin-right: 10px;
+}
+
+.navbar-nav .nav-link.user-name {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.2); /* Light overlay */
+  padding: 5px 10px;
   border-radius: 5px;
-  padding: 10px 15px;
+  margin-right: 15px;
+}
+
+/* Logout button styling */
+.btn-logout {
+  background-color: #e74c3c; /* Bright red color */
+  color: white;
+  font-weight: 500;
+  border: none;
+  padding: 6px 15px;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+
+.btn-logout:hover {
+  background-color: #ff6b6b; /* Slightly lighter red on hover */
+  transform: scale(1.05); /* Slightly larger on hover */
+}
+
+/* Small animation for the brand on hover */
+.navbar-brand:hover {
+  color: #ffdb4d; /* A contrasting yellow color */
+  transform: scale(1.1); /* Slight scale effect */
+}
+
+
+
+/* animation */
+
+/* Keyframe animations for fade effects */
+@keyframes fadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+/* Bounce animation */
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-20px);
+  }
+  60% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Applying animations to elements */
+.fade-up {
+  animation: fadeUp 0.6s ease-out;
+}
+
+.fade-down {
+  animation: fadeDown 0.6s ease-out;
+}
+
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 0.6s ease-out;
+}
+
+.fade-out {
+  opacity: 1;
+  animation: fadeOut 0.6s ease-out;
+}
+
+.bounce {
+  animation: bounce 1s ease infinite; /* Adjust duration and repeat count as needed */
+}
+
+/* Keyframe animations for fade effects with horizontal movement */
+@keyframes fadeLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-20px); /* Start from left */
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0); /* End in place */
+  }
+}
+
+@keyframes fadeRight {
+  0% {
+    opacity: 0;
+    transform: translateX(20px); /* Start from right */
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0); /* End in place */
+  }
+}
+
+/* Applying animations to elements */
+.fade-left {
+  opacity: 0; /* Ensures the element is initially invisible */
+  animation: fadeLeft 1.3s ease-out forwards;
+}
+
+.fade-right {
+  opacity: 0; /* Ensures the element is initially invisible */
+  animation: fadeRight 1.3s ease-out forwards;
+}
+
+/* registration */
+
+/* General styling for the register page */
+.register-page-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f0f2f5;
+}
+
+.register-form-card {
+  width: 100%;
+  max-width: 400px;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  background-color: #ffffff;
+}
+
+.form-title {
+  text-align: center;
+  font-size: 1.8rem;
+  color: #34495e;
+  margin-bottom: 1.5rem;
+}
+
+.ant-form-item label {
+  font-weight: bold;
+  color: #34495e;
+}
+
+.ant-input {
+  height: 2.5rem;
+  border-radius: 4px;
+}
+
+.form-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.register-btn {
+  background-color: #34495e;
+  color: #ffffff;
+  padding: 0.5rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.register-btn:hover {
+  background-color: #2c3e50;
+}
+
+.login-link {
+  color: #34495e;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.login-link:hover {
+  text-decoration: underline;
+}
+
+
+/* loginpage */
+
+/* General styling for the login page */
+.login-page-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f0f2f5;
+}
+
+.login-form-card {
+  width: 100%;
+  max-width: 400px;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  background-color: #ffffff;
+}
+
+.form-title {
+  text-align: center;
+  font-size: 1.8rem;
+  color: #34495e;
+  margin-bottom: 1.5rem;
+}
+
+.ant-form-item label {
+  font-weight: bold;
+  color: #34495e;
+}
+
+.ant-input {
+  height: 2.5rem;
+  border-radius: 4px;
+}
+
+.form-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.login-btn {
+  background-color: #34495e;
+  color: #ffffff;
+  padding: 0.5rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.login-btn:hover {
+  background-color: #2c3e50;
+}
+
+.register-link {
+  color: #34495e;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.register-link:hover {
+  text-decoration: underline;
 }
