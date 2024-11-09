@@ -61,7 +61,7 @@ const HomePage = () => {
               setShowModal(true);
             }}
           />
-          <DeleteOutlined className="mx-2" />
+          <DeleteOutlined className="mx-2" onClick={() =>{handleDelete(record)}} />
         </div>
       ),
     },
@@ -91,6 +91,19 @@ const HomePage = () => {
     };
     getAllTransection();
   }, [frequency, selectedDate, type]);
+
+  const handleDelete = async (record) => {
+    try{
+      setLoading(true)
+      await  axios.post("/transections/delete-transection", {transacationId: record._id})
+      setLoading(false)
+      message.success("Transaction Deleted!");
+    }catch(error){
+      setLoading(false)
+      console.log(error)
+      message.error('unable to delete')
+    }
+  };
 
   const handleSubmit = async (values) => {
     try {
