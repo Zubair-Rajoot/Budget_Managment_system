@@ -1,10 +1,12 @@
 import React, {useEffect, useState} from 'react'
 import {Form, Input, message, Modal, Select, Table, DatePicker} from 'antd'
 import Layout from '../components/Layout/Layout'
+import {UnorderedListOutlined, AreaChartOutlined} from '@ant-design/icons'
 import FormItem from 'antd/es/form/FormItem'
 import axios from 'axios'
 import Spinner from '../components/Layout/Spinner'
 import moment from "moment"
+import Analytics from '../components/Layout/Analytics'
 const { RangePicker } = DatePicker;
 
 
@@ -15,6 +17,7 @@ const HomePage = () => {
   const[frequency,setFrequency] = useState('7')
   const[selectedDate, setSelecteddate] = useState([])
   const[type,setType] = useState('all')
+  const[viewData, setViewData] = useState('table')
 
   //TABLE DATA 
   const columns = [
@@ -109,13 +112,20 @@ const HomePage = () => {
           </Select>
           {frequency === 'custom' && <RangePicker value={selectedDate} onChange={(values)=>setSelecteddate(values)}/>}
         </div>
+        <div className='switch-icons'>
+          <UnorderedListOutlined className={`mx-2 ${viewData === 'table'?'active-icon':'inactive-icon'}`} onClick={() => setViewData('table')}/>
+          <AreaChartOutlined className={`mx-2 ${viewData === 'analytics'?'active-icon':'inactive-icon'}`} onClick={() => setViewData('analytics')}/>
+        </div> 
         <div>
           <button className='btn btn-primary' onClick={()=>setShowModal(true)}>Add New</button>
         </div>
       </div>
 
       <div className='content'>
-      <Table columns={columns} dataSource={allTransection}/>
+        {viewData === 'table' ? 
+        <Table columns={columns} dataSource={allTransection}/>
+         : <Analytics allTransection={allTransection}/>}
+      <div/>
         <Modal title="Add Transection" 
         open={showModal}
         onCancel={()=>setShowModal(false)}
