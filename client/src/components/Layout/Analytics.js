@@ -125,6 +125,7 @@ const Analytics = ({ allTransection }) => {
             );
           })}
         </div>
+        
         <div className="col-md-4">
           <h4>Categorywise Expense</h4>
           {categories.map((category) => {
@@ -155,3 +156,4 @@ const Analytics = ({ allTransection }) => {
 };
 
 export default Analytics;
+//expense track
