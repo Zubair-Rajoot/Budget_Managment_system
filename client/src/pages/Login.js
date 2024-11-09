@@ -1,68 +1,67 @@
-import React, { useState, useEffect } from 'react'
-import { Form, Input, message } from 'antd'
-import { Link, useNavigate } from 'react-router-dom'
-import axios from 'axios'
-import Spinner from '../components/Layout/Spinner'
 
-
+import React, { useState, useEffect } from 'react';
+import { Form, Input, message } from 'antd';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import Spinner from '../components/Layout/Spinner';
 
 const Login = () => {
-
-  const[loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
-    const submitHandler = async(values) => {
-      try {
-          const {data} = await axios.post('http://localhost:8080/api/v1/users/login', values); // Fully qualified URL for the backend API
-          message.success("Login successfully");
-          localStorage.setItem('user', JSON.stringify({...data.user, Password: ''}));
-          navigate('/');
-      } catch (error) {
-          message.error('Something went wrong');
-      }
-  };
-  
+    const submitHandler = async (values) => {
+        setLoading(true);
+        try {
+            const { data } = await axios.post('http://localhost:8080/api/v1/users/login', values);
+            message.success("Login successful");
+            localStorage.setItem('user', JSON.stringify({ ...data.user, Password: '' }));
+            navigate('/');
+        } catch (error) {
+            message.error('Something went wrong');
+        } finally {
+            setLoading(false);
+        }
+    };
 
-   //prevent for login user 
-   useEffect(()=>{
-    if(localStorage.getItem('user')){
-        navigate('/')
-    }
-}, [navigate])
+    // Prevent logged-in user from accessing login page
+    useEffect(() => {
+        if (localStorage.getItem('user')) {
+            navigate('/');
+        }
+    }, [navigate]);
 
-
-
-
-
-  return (
-    <>
-    <div className='register-page'>
-    {loading && <Spinner/>}
-                <Form layout='vertical' onFinish={submitHandler}>
-                    <h1>Login </h1>
-                   
-
-                    <Form.Item label='email' name='email'>
-                        <Input type='email' />
+    return (
+        <div className="login-page-container">
+            <div className="login-form-card">
+                {loading && <Spinner />}
+                <h1 className="form-title">Login</h1>
+                <Form layout="vertical" onFinish={submitHandler}>
+                    <Form.Item
+                        label="Email"
+                        name="email"
+                        rules={[{ required: true, message: 'Please enter your email' }]}
+                    >
+                        <Input type="email" placeholder="Enter your email" />
                     </Form.Item>
 
-                    <Form.Item label='password' name='password'>
-                        <Input type='password' />
+                    <Form.Item
+                        label="Password"
+                        name="password"
+                        rules={[{ required: true, message: 'Please enter your password' }]}
+                    >
+                        <Input type="password" placeholder="Enter your password" />
                     </Form.Item>
 
-                   
-
-            
-                     <div classname="d-flex justify-content-between">
-                        <Link to="/register">Not a user ? Click here to register</Link>
-                        <button className="btn btn-primary">Login</button>
+                    <div className="form-footer">
+                        <Link to="/register" className="register-link">
+                            Not a user? Register here
+                        </Link>
+                        <button type="submit" className="btn login-btn">Login</button>
                     </div>
-
-        </Form >
+                </Form>
+            </div>
         </div>
-      
-    </>
-  )
-}
+    );
+};
 
-export default Login
+export default Login;
