@@ -369,7 +369,7 @@ button[type="submit"]:hover {
 @keyframes fadeLeft {
   0% {
     opacity: 0;
-    transform: translateX(-20px); /* Start from left */
+    transform: translateX(-60px); /* Start from left */
   }
   100% {
     opacity: 1;
@@ -380,7 +380,7 @@ button[type="submit"]:hover {
 @keyframes fadeRight {
   0% {
     opacity: 0;
-    transform: translateX(20px); /* Start from right */
+    transform: translateX(40%); /* Start from right */
   }
   100% {
     opacity: 1;
